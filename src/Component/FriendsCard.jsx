@@ -1,24 +1,24 @@
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 
 const FriendsCard = ({ friend }) => {
-  const badgeColor = {
-    overdue: "bg-red-500 text-white",
-    "almost due": "bg-orange-400 text-white",
-    "on-track": "bg-sky-700 text-white",
+  const statusColors = {
+    "almost due": "bg-orange-500",
+    overdue: "bg-red-500",
+    "on-track": "bg-blue-700",
   };
 
   return (
     <Link to={`/friend/${friend.id}`}>
-      <div className="bg-white rounded-xl shadow-sm hover:shadow-md duration-300 p-6 text-center cursor-pointer">
+      <div className="bg-white rounded-xl shadow-sm p-6 text-center hover:shadow-md duration-300 cursor-pointer">
         <img
           src={friend.picture}
           alt={friend.name}
           className="w-20 h-20 rounded-full mx-auto object-cover"
         />
 
-        <h2 className="text-2xl font-bold mt-4">{friend.name}</h2>
+        <h2 className="text-3xl font-bold mt-4">{friend.name}</h2>
 
-        <p className="text-gray-400 text-sm mt-2">
+        <p className="text-gray-400 mt-2">
           {friend.days_since_contact}d ago
         </p>
 
@@ -26,16 +26,16 @@ const FriendsCard = ({ friend }) => {
           {friend.tags.map((tag, index) => (
             <span
               key={index}
-              className="bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-xs font-semibold"
+              className="bg-teal-100 text-teal-700 px-3 py-1 rounded-full text-sm font-semibold"
             >
-              {tag}
+              {tag.toUpperCase()}
             </span>
           ))}
         </div>
 
         <div className="mt-3">
           <span
-            className={`px-4 py-1 rounded-full text-xs font-semibold ${badgeColor[friend.status]}`}
+            className={`${statusColors[friend.status]} text-white px-4 py-1 rounded-full text-sm`}
           >
             {friend.status}
           </span>
