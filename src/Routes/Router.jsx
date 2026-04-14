@@ -5,6 +5,7 @@ import FriendDetails from "../Pages/FriendDetails";
 import Timeline from "../Pages/Timeline";
 import Stats from "../Pages/Stats";
 import NotFound from "../Pages/NotFound";
+import friendsData from "../Data/Friends.json";
 
 const router = createBrowserRouter([
   {
@@ -15,6 +16,7 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Home />,
+        loader: () => friendsData,
       },
       {
         path: "friend/:id",
