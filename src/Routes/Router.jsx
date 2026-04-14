@@ -15,7 +15,10 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Home />,
-        loader: () => friendsData,
+        loader: async () => {
+          await new Promise((resolve) => setTimeout(resolve, 1000));
+          return friendsData;
+        },
       },
       {
         path: "friend/:id",
